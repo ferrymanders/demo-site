@@ -18,16 +18,15 @@ function getVersions(){
 		cache: false,
 		dataType: "json",
 		success: function(data) {
-      $.each(data, function(key, value) {
-        //display the key and value pair
-        //alert(key + ' is ' + value);
-        array[key] = value;
-	console.log(key + ' -> ' + value);
-      });
+			$.each(data, function(key, value) {
+				array[key] = value;
+			});
 		}
 	});
 	
-  dump(array);
+	$.each(array, function(key, value) {
+		console.log(key + ' => ' + value);
+	}); 
   
 }
 
