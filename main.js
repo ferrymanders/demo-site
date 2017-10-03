@@ -1,4 +1,16 @@
+function dump(obj) {
+	var out = '';
+	for (var i in obj) {
+		out += i + ": " + obj[i] + "\n";
+	}
+	
+	var pre = document.createElement('pre');
+	pre.innerHTML = out;
+	document.body.appendChild(pre)
+}
+
 function getVersions(){
+  var array = [];
 	$.ajax({
 		type: "GET",
 		url: "/api.php",
@@ -7,12 +19,14 @@ function getVersions(){
 		success: function(data) {
       $.each(data, function(key, value) {
         //display the key and value pair
-        alert(key + ' is ' + value);
+        //alert(key + ' is ' + value);
+        array[key] = value;
       });
-
 		}
 	});
 	
+  dump(array);
+  
 }
 
 $(document).ready(function() {
