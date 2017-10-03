@@ -22,6 +22,7 @@ function getVersions(){
         //display the key and value pair
         //alert(key + ' is ' + value);
         array[key] = value;
+	console.log(key + ' -> ' + value);
       });
 		}
 	});
