@@ -1,0 +1,50 @@
+server
+{    
+  listen       8080;
+  
+  root		/e/ap/site/pages;
+
+  # statische bestanden uit /data halen
+  location ^~ /data/ {
+    root /e/ap/site;
+  }
+
+  index index.php index.html;
+
+  default_type text/html;
+
+  location /healthz {
+    access_log off;
+    add_header X-HealthCheck NGINX-Fine;
+    return 200;
+  }  
+
+  location ~ [^/]\.php(/|$)
+  {
+    fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+
+    fastcgi_pass php-fpm:9000;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+    include fastcgi_params;
+    add_header X-Upstream $upstream_addr;
+    add_header 'Access-Control-Allow-Origin' '*';
+  }
+
+  location /
+  {
+    try_files	$uri $uri/ /index.php?$args;
+    add_header 'Access-Control-Allow-Origin' '*';
+  }
+
+  # deny running scripts inside writable directories
+  location ~* /(images|cache|media|logs|tmp)/.*\.(php|pl|py|jsp|asp|sh|cgi)$
+  {
+    return 403;
+    error_page 403 /403_error.html;
+  }
+}
+  
+  
+
