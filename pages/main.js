@@ -21,14 +21,6 @@ function getVersions(){
 		dataType: "json",
 		success: function(data) {
 			$.each(data, function(key, value) {
-       	var div = document.getElementById(key);
-				array[key] = value;
-				if (!div)
-				{
-					//$("#data").append('<tr id="' + key + '"><td>' + key + '</td><td>' + value + '</td></tr>'); 
-				}else{
-					//$('#'.key).html('<td>' + key + '</td><td>' + value + '</td>');
-				}
 				setHostData(key, value);
 			});
 		}
