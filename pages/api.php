@@ -1,5 +1,5 @@
 <?php
-  $version = "4.0";
+  $version = "3.0";
   $hostname = gethostname();
   
   $array = array( "$hostname" => "$version" );
