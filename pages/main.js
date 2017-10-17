@@ -32,7 +32,7 @@ function setHostData(host, value)
 {
 	var array = [];
 	var timenow = (new Date).getTime();
-	array.value = value;
+	array.version = value;
 	array.time = timenow;
 	hostdata[host] = array;
 	for (var prop in hostdata) {
@@ -53,9 +53,9 @@ function setHostData(host, value)
 				var div = document.getElementById(prop);
 				if (!div)
 				{
-					$("#data").append('<tr id="' + prop + '"><td>' + prop + '</td><td>' + value + '</td></tr>'); 
+					$("#data").append('<tr id="' + prop + '"><td>' + prop + '</td><td>' + hostdata[prop].version + '</td></tr>'); 
 				}else{
-					$('#'.prop).html('<td>' + prop + '</td><td>' + value + '</td>');
+					$('#'.prop).html('<td>' + prop + '</td><td>' + hostdata[prop].version + '</td>');
 				}
 		}
 	}
